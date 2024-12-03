@@ -1,23 +1,43 @@
 <Main_grid>
-    system: "metric"
+    system: 'Metric'
+    advanced: 'False'
     cols: 1
     Label:
-        text: "BMI Calculator"
+        text: 'BMI Calculator'
         font_size: 30
         size_hint_y: None
         height: 50
-    Label:
-        text: 'Fill Out Form'
-        font_size: 30
-        size_hint_y: None
-        size_hint: (1, 0.3)
     GridLayout:
         cols: 1
-        size_hint: (1, 0.7)
+        size_hint: (1, 0.5)
         padding: 10
         GridLayout:
+            cols: 1
+            Label:
+                text: 'Settings'
+                font_size: 30
+            GridLayout:
+                cols: 2
+                Label:
+                    text: 'Switch system, current: %s' % root.system
+                    id: system_label
+                Switch:
+                    on_active: root.switch_system()
+            GridLayout:
+                cols: 2
+                Label:
+                    text: f'Advanced form, current: {root.advanced}'
+                    id: advanced_label
+                Switch:
+                    on_active: root.switch_advanced()
+        Label:
+            text: 'Fill Out Form'
+            font_size: 30
+            size_hint_y: None
+            size_hint: (1, 0.3)
+        GridLayout:
             cols: 2
-            size_hint: (1, 0.5)
+            size_hint: (1, 0.2)
             Label:
                 text: 'Height (cm) max: 300, min: 20'
                 id: height_label
@@ -27,9 +47,9 @@
                 input_type: 'number'
         GridLayout:
             cols: 2
-            size_hint: (1, 0.5)
+            size_hint: (1, 0.2)
             Label:
-                text: "Weight (kg) max: 300, min: 1"
+                text: 'Weight (kg) max: 300, min: 1'
                 id: weight_label
             TextInput:
                 id: weight
@@ -38,7 +58,7 @@
     Button:
         text: 'Get BMI'
         size_hint: (0.2, 0.1)
-        padding: 10
+        padding: 20
         on_press: root.calculate_bmi()
 
 
@@ -51,6 +71,7 @@
         orientation: 'vertical'
         Label:
             text: 'Your results are:'
+            font_size: 30
         Label:
             id: bmi_number
         Label:
