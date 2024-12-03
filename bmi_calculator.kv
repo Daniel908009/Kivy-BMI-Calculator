@@ -1,0 +1,73 @@
+<Main_grid>
+    system: "metric"
+    cols: 1
+    Label:
+        text: "BMI Calculator"
+        font_size: 30
+        size_hint_y: None
+        height: 50
+    Label:
+        text: 'Fill Out Form'
+        font_size: 30
+        size_hint_y: None
+        size_hint: (1, 0.3)
+    GridLayout:
+        cols: 1
+        size_hint: (1, 0.7)
+        padding: 10
+        GridLayout:
+            cols: 2
+            size_hint: (1, 0.5)
+            Label:
+                text: 'Height (cm) max: 300, min: 20'
+                id: height_label
+            TextInput:
+                id: height
+                multiline: False
+                input_type: 'number'
+        GridLayout:
+            cols: 2
+            size_hint: (1, 0.5)
+            Label:
+                text: "Weight (kg) max: 300, min: 1"
+                id: weight_label
+            TextInput:
+                id: weight
+                multiline: False
+                input_type: 'number'
+    Button:
+        text: 'Get BMI'
+        size_hint: (0.2, 0.1)
+        padding: 10
+        on_press: root.calculate_bmi()
+
+
+
+
+<Result_popup>
+    title: 'Results'
+    size_hint: (0.7, 0.7)
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            text: 'Your results are:'
+        Label:
+            id: bmi_number
+        Label:
+            id: result
+        Button:
+            text: 'Close'
+            on_press: root.dismiss()
+
+<Error_popup>
+    title: 'Error'
+    size_hint: (0.7, 0.7)
+    BoxLayout:
+        orientation: 'vertical'
+        Label:
+            id: reason
+        Button:
+            text: 'Close'
+            size_hint: (1, 0.2)
+            padding: 10
+            on_press: root.dismiss()
